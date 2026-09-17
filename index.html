@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anant's Cyber Roadmap</title>
+<meta name="description" content="16-week cybersecurity roadmap (ethical hacking, web security, OSINT and forensics) with synced progress tracking.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">&gt;_ anant<span class="long">/</span><span class="long">cyber-roadmap</span></div>
+    <div class="spacer"></div>
+    <div class="sync" id="sync"><span class="dot"></span><span class="label">Saved on this device</span></div>
+    <button class="btn icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">◐</button>
+    <button class="btn primary" id="authBtn">Sign in to sync</button>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="side" id="nav" aria-label="Sections">
+    <div class="group">Track</div>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#profile">Profile</a>
+    <a href="#big-picture">Big picture</a>
+    <div class="group">Phases</div>
+    <a href="#p1">1 · Foundations <span class="pct" data-pct="p1"></span></a>
+    <a href="#p2">2 · Web hacking <span class="pct" data-pct="p2"></span></a>
+    <a href="#p3">3 · OSINT + forensics <span class="pct" data-pct="p3"></span></a>
+    <a href="#p4">4 · CTFs + portfolio <span class="pct" data-pct="p4"></span></a>
+    <a href="#portfolio">Portfolio <span class="pct" data-pct="pf"></span></a>
+    <div class="group">Resources</div>
+    <a href="#hinglish">Hinglish</a>
+    <a href="#coursera">Coursera <span class="pct" data-pct="cs"></span></a>
+    <a href="#writeups">Write-up kit</a>
+    <a href="#budget">Budget</a>
+    <a href="#routine">Weekly routine</a>
+    <div class="group">Career</div>
+    <a href="#placement">Placement</a>
+    <a href="#ethics">Ethics &amp; law</a>
+    <a href="#next">After 4 months</a>
+    <a href="#sources">Sources</a>
+  </nav>
+
+  <main>
+    <!-- DASHBOARD -->
+    <section class="block hero" id="dashboard">
+      <div class="eyebrow">16-week plan · 12 hrs/week</div>
+      <h1>Anant's Cybersecurity Roadmap</h1>
+      <p class="lead">From zero to a junior-level portfolio in <b>ethical hacking and web security</b>, with a solid base in <b>cyber crime investigation and forensics</b>.</p>
+      <p class="meta">MSc Physics dual degree, BITS Pilani · Plan created 17 Sep 2026</p>
+      <div class="stats" id="stats"></div>
+      <div class="bar" style="margin-bottom:18px"><i id="overallBar"></i></div>
+      <div class="phase-bars" id="phaseBars"></div>
+      <h3 style="margin-top:22px">Study hours per week</h3>
+      <p class="tip">Log hours inside each week card. The dashed line is your 12-hour target.</p>
+      <div class="hours-chart" id="hoursChart"></div>
+      <div class="hours-labels" id="hoursLabels"></div>
+      <div class="callout" id="nextUp"></div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="block" id="profile">
+      <h2>Your profile and assumptions</h2>
+      <p>In 16 weeks at 12 hours a week (about 190 hours), you can build real, provable beginner skills. You won't be an expert yet, but you'll be ahead of most 2nd-year students.</p>
+      <div class="table-wrap"><table>
+        <tr><th>Item</th><th>Your answer</th><th>What it means for the plan</th></tr>
+        <tr><td>Year / program</td><td>2nd year, MSc Physics dual degree, BITS Pilani</td><td>Placements are 1.5–2 years away, so there's time to build depth</td></tr>
+        <tr><td>Programming</td><td>Basic C, 2 web apps built with AI help</td><td>Python starts Week 3; your apps become practice targets in Phase 2</td></tr>
+        <tr><td>Linux</td><td>Basic Ubuntu commands</td><td>Phase 1 builds on this</td></tr>
+        <tr><td>Networks / OS</td><td>Never studied</td><td>Covered from scratch in Weeks 1–4</td></tr>
+        <tr><td>Focus</td><td>Ethical hacking + cyber crime + forensics</td><td>Main track: web security. Second track: OSINT/forensics</td></tr>
+        <tr><td>Laptop</td><td>Dell Latitude 3420, i7-1165G7, 16 GB RAM, Windows 11 Pro</td><td>Runs a Kali VM easily (4–6 GB RAM, 60 GB disk) or WSL2 Ubuntu</td></tr>
+        <tr><td>Budget</td><td>Up to Rs 500/month</td><td>Mostly free; at most one paid lab platform later</td></tr>
+        <tr><td>AI tools</td><td>ChatGPT Go, Claude Max, Google AI Plus</td><td>Use them as a tutor (rules below)</td></tr>
+      </table></div>
+      <h3>By the end of Week 16 you should be able to</h3>
+      <ul class="clean" id="outcomes"></ul>
+      <h3>Using AI without cheating yourself</h3>
+      <ul class="clean">
+        <li>Ask it to <b>explain</b> concepts at different levels, quiz you without giving answers, and review your code and write-ups.</li>
+        <li>Try a lab or CTF for 20–30 minutes first, and show your attempt before asking. Ask for a <b>hint</b>, not the solution. Don't copy code you can't explain.</li>
+        <li>Ask it to challenge your findings and spot false positives.</li>
+        <li>Never paste passwords, API keys, tokens, personal data or confidential evidence.</li>
+      </ul>
+    </section>
+
+    <!-- BIG PICTURE -->
+    <section class="block" id="big-picture">
+      <h2>The big picture</h2>
+      <p>Four 4-week phases, each building on the last. Don't skip Phase 1 even if it feels slow.</p>
+      <div class="flow" id="flow"></div>
+      <div class="table-wrap"><table>
+        <tr><th>Phase</th><th>You will be able to</th><th>Portfolio output</th></tr>
+        <tr><td>1. Foundations</td><td>Use the Linux terminal, explain how the internet works, scan with Nmap, read packets in Wireshark</td><td>Lab setup post, Bandit write-ups, "visiting a website" report</td></tr>
+        <tr><td>2. Offense</td><td>Write small Python tools; find and exploit OWASP Top 10 bugs in practice apps</td><td>Python tools on GitHub, PortSwigger lab notes, own-app security review</td></tr>
+        <tr><td>3. Investigation</td><td>Trace scams with OSINT; analyze disk images, memory dumps and logs</td><td>Mock fraud investigation, forensics write-ups</td></tr>
+        <tr><td>4. Proof</td><td>Solve beginner CTFs, pentest a practice machine, write a professional report</td><td>Pentest report, CTF write-ups, resume</td></tr>
+      </table></div>
+      <div class="callout"><b>Rule of thumb:</b> 30% theory, 70% hands-on. If a week goes badly (quizzes, midsems, fests), shift the plan a week. Don't cram.</div>
+    </section>
+
+    <div id="phases"></div>
+
+    <!-- PORTFOLIO -->
+    <section class="block" id="portfolio">
+      <h2>Portfolio checklist</h2>
+      <p>By Week 16, these should be public on GitHub or your blog.</p>
+      <ul class="tasks" id="portfolioList"></ul>
+    </section>
+
+    <!-- HINGLISH -->
+    <section class="block" id="hinglish">
+      <h2>Hindi / Hinglish resources</h2>
+      <p>Watch the Hinglish video first to get the idea, then do the English lab from the main plan. Tools and platforms are English-only, so keep practicing in English too. Each week card also links a Hinglish option.</p>
+      <div class="table-wrap"><table>
+        <tr><th>Phase</th><th>Channel (free on YouTube)</th><th>Use it for</th></tr>
+        <tr><td>1</td><td><a href="https://www.youtube.com/results?search_query=gate+smashers+computer+networks" target="_blank" rel="noopener">Gate Smashers</a></td><td>Computer Networks playlist: OSI, TCP/IP, subnetting, DNS</td></tr>
+        <tr><td>1–2</td><td><a href="https://www.youtube.com/results?search_query=codewithharry+python+tutorial+for+beginners" target="_blank" rel="noopener">CodeWithHarry</a></td><td>Python in Hindi from zero, alongside CS50P</td></tr>
+        <tr><td>1–2</td><td><a href="https://www.youtube.com/results?search_query=tech+raj+cyber+security" target="_blank" rel="noopener">Tech Raj</a></td><td>Very simple Hinglish explanations of hacking concepts and awareness</td></tr>
+        <tr><td>2</td><td><a href="https://www.youtube.com/results?search_query=bitten+tech+ethical+hacking" target="_blank" rel="noopener">Bitten Tech</a></td><td>Scanning, enumeration, SQL injection, Burp Suite, bug bounty basics</td></tr>
+        <tr><td>2</td><td><a href="https://www.youtube.com/results?search_query=techchip+kali+linux+burp+suite" target="_blank" rel="noopener">TechChip</a></td><td>Kali Linux, Burp Suite, SQL injection, bug bounty</td></tr>
+        <tr><td>2–4</td><td><a href="https://www.youtube.com/results?search_query=cyberwings+security" target="_blank" rel="noopener">Cyberwings Security</a></td><td>Pentesting basics, cert-style topics (eJPT, CEH)</td></tr>
+        <tr><td>1–4</td><td><a href="https://www.youtube.com/results?search_query=wscube+tech+ethical+hacking+full+course+hindi" target="_blank" rel="noopener">WsCube Tech</a></td><td>Long Hindi ethical hacking courses. Pick single topics for revision</td></tr>
+      </table></div>
+      <div class="callout warn"><b>Filter out bad content:</b> skip "hack WhatsApp/Instagram/Wi-Fi in 2 minutes" videos. They're clickbait, often illegal, and sometimes spread malware. Only download tools from official websites or GitHub.</div>
+    </section>
+
+    <!-- COURSERA -->
+    <section class="block" id="coursera">
+      <h2>Free Coursera certificates (via Financial Aid)</h2>
+      <p>Certificates aren't free by default. <b>Financial Aid</b> unlocks the full course and shareable certificate for free. Audit mode only gives you the videos.</p>
+      <ol class="clean">
+        <li>Open the course → <b>Enroll</b> → <b>Financial aid available</b> (not the free trial).</li>
+        <li>Fill the form honestly: student status, why you need it, how it fits your career goal.</li>
+        <li>Wait about 2 weeks. Starting a 7-day free trial meanwhile can cancel the application.</li>
+        <li>For a Professional Certificate, apply for <b>each course separately</b>. Up to 10 applications can be active, so apply 2–3 at a time.</li>
+      </ol>
+      <div class="sublabel" style="margin-top:14px">Track your courses</div>
+      <ul class="tasks" id="courseraList"></ul>
+      <div class="callout"><b>Don't overload:</b> your 12 hours are already full. Use Google courses 1, 3, 4 in place of some Phase 1–2 theory videos, Infosec Forensics in place of some Phase 3 reading, and do the rest after Week 16. Labs and reports count more in interviews than certificates.</div>
+    </section>
+
+    <!-- WRITE-UP KIT -->
+    <section class="block" id="writeups">
+      <h2>Write-up kit</h2>
+      <p>A clear report shows more skill than a big count of solved flags. Use this template for every lab, CTF and investigation.</p>
+      <div class="grid-2">
+        <div><div class="sublabel">Report template</div><ol class="clean" id="writeupList"></ol></div>
+        <div><div class="sublabel">GitHub repo structure</div><pre class="tree" id="repoTree"></pre>
+          <div class="sublabel" style="margin-top:14px">Sunday reflection (answer without AI)</div><ol class="clean" id="reflectList"></ol></div>
+      </div>
+    </section>
+
+    <!-- BUDGET -->
+    <section class="block" id="budget">
+      <h2>Budget: under Rs 500/month</h2>
+      <p>Spend nothing in Months 1–2, save the Rs 1,000, and use your Rs 2,000 total on one paid lab platform in Months 3–4.</p>
+      <div class="table-wrap"><table>
+        <tr><th>Month</th><th>Pay for</th><th>Approx. cost</th><th>Why</th></tr>
+        <tr><td>1 (Wk 1–4)</td><td>Nothing</td><td>Rs 0</td><td>Everything in Phase 1 is free</td></tr>
+        <tr><td>2 (Wk 5–8)</td><td>Nothing</td><td>Rs 0</td><td>PortSwigger, Juice Shop, DVWA are free</td></tr>
+        <tr><td>3 (Wk 9–12)</td><td><a href="https://help.hackthebox.com/en/articles/13677074-academy-subscriptions" target="_blank" rel="noopener">HTB Academy Student plan</a> ($8/month, Tier 0–II modules)</td><td>~Rs 700–850 with GST</td><td>Structured modules for forensics, privilege escalation, web</td></tr>
+        <tr><td>4 (Wk 13–16)</td><td>Same plan, one more month</td><td>~Rs 700–850</td><td>Machines and modules for Phase 4</td></tr>
+        <tr><td><b>Total</b></td><td></td><td><b>~Rs 1,400–1,700</b></td><td>Under Rs 2,000 for 4 months</td></tr>
+      </table></div>
+      <ul class="clean">
+        <li><b>HTB student plan:</b> add your BITS email as a secondary email, or submit proof of enrollment (<a href="https://help.hackthebox.com/en/articles/13465244-getting-the-student-subscription" target="_blank" rel="noopener">how</a>).</li>
+        <li><b>TryHackMe Premium</b> lists ~EUR 10.50/month annual and EUR 16.99 monthly (<a href="https://tryhackme.com/pricing" target="_blank" rel="noopener">pricing</a>), over budget. Check the price shown in India. Free rooms are enough.</li>
+        <li><b>Skip for now:</b> CEH, OSCP and paid Udemy "hacking" bundles.</li>
+        <li><b>ISC2 Certified in Cybersecurity:</b> the free exam program <a href="https://www.isc2.org/Insights/2026/04/one-million-certified-cyber-conclusion" target="_blank" rel="noopener">ended in 2026</a>.</li>
+      </ul>
+    </section>
+
+    <!-- ROUTINE -->
+    <section class="block" id="routine">
+      <h2>Weekly routine (12 hours)</h2>
+      <p>Short daily sessions beat one long weekend binge.</p>
+      <div class="table-wrap"><table>
+        <tr><th>Day</th><th>Time</th><th>What to do</th></tr>
+        <tr><td>Mon</td><td>1.5 hr</td><td>Theory: videos or reading for the week's topic</td></tr>
+        <tr><td>Tue</td><td>1.5 hr</td><td>Hands-on labs</td></tr>
+        <tr><td>Wed</td><td>1 hr</td><td>Python practice</td></tr>
+        <tr><td>Thu</td><td>1.5 hr</td><td>Hands-on labs</td></tr>
+        <tr><td>Fri</td><td>1 hr</td><td>Revise notes; Claude quizzes you</td></tr>
+        <tr><td>Sat</td><td>3 hr</td><td>Big lab session: machines, CTFs, the phase project</td></tr>
+        <tr><td>Sun</td><td>2.5 hr</td><td>Write-ups (1 hr), catch up, reflection, log your hours here</td></tr>
+      </table></div>
+    </section>
+
+    <!-- PLACEMENT -->
+    <section class="block" id="placement">
+      <h2>Placement readiness</h2>
+      <p><b>Entry roles to aim for:</b> VAPT / pentest intern, application security intern, SOC analyst, digital forensics analyst, threat intelligence / OSINT analyst.</p>
+      <ul class="clean">
+        <li><b>Practice School:</b> look for stations at IT security, banking or consulting firms. Use your portfolio as your pitch.</li>
+        <li><b>Non-CS background isn't a blocker.</b> Put GitHub and your pentest report at the top of your resume, above coursework.</li>
+        <li><b>Find your people:</b> join or start a campus CTF team.</li>
+        <li><b>Electives:</b> take Computer Networks and Operating Systems if your program allows.</li>
+      </ul>
+      <p><b>Resume formula:</b> what you built or tested + tools + result. <i>"Performed a black-box pentest of a web app using Burp Suite and Nmap; found 6 vulnerabilities including SQL injection and IDOR; wrote a 7-page report with fixes."</i></p>
+      <p><b>Certifications:</b> skip during these 16 weeks. Later: eJPT or HTB CPTS (offense), or CompTIA Security+ (known to HR). Check prices then.</p>
+      <p><b>Interview prep:</b> TCP handshake, how HTTPS works, OWASP Top 10, one CTF challenge step by step, and why physics → security. That last one is a strength.</p>
+    </section>
+
+    <!-- ETHICS -->
+    <section class="block" id="ethics">
+      <h2>Ethics and Indian law</h2>
+      <p>The only difference between an ethical hacker and a criminal is <b>written permission</b>.</p>
+      <div class="table-wrap"><table>
+        <tr><th>Law</th><th>Covers</th><th>Why it matters</th></tr>
+        <tr><td><a href="https://www.indiacode.nic.in/handle/123456789/1999" target="_blank" rel="noopener">IT Act, 2000</a> Sec 43</td><td>Unauthorized access, downloading data, viruses</td><td>Liability to pay compensation</td></tr>
+        <tr><td>IT Act Sec 66</td><td>Sec 43 acts done dishonestly or fraudulently</td><td>Up to 3 years in jail and/or fine</td></tr>
+        <tr><td>IT Act Sec 66C, 66D</td><td>Identity theft, cheating by impersonation</td><td>Core to the scam cases in Phase 3</td></tr>
+        <tr><td>DPDP Act, 2023</td><td>Handling of personal data</td><td>Keep OSINT on real people ethical and proportionate</td></tr>
+      </table></div>
+      <ol class="clean">
+        <li>Only attack your own lab or platforms that give permission (TryHackMe, HTB, PortSwigger, picoCTF, in-scope bug bounties).</li>
+        <li>Never touch the BITS network, college portals, friends' accounts or Wi-Fi "for fun".</li>
+        <li>For OSINT, investigate yourself, fictional targets or CTF scenarios.</li>
+        <li>Found a real bug by accident? Don't exploit it. Report it to the organization or <a href="https://www.cert-in.org.in/" target="_blank" rel="noopener">CERT-In</a>.</li>
+      </ol>
+      <p class="tip">General information, not legal advice.</p>
+    </section>
+
+    <!-- NEXT -->
+    <section class="block" id="next">
+      <h2>After 4 months</h2>
+      <p>Pick the track you enjoyed most and go deep for 6–12 months.</p>
+      <div class="table-wrap"><table>
+        <tr><th>If you enjoyed…</th><th>Go deeper into</th><th>Next milestones</th></tr>
+        <tr><td>Web hacking</td><td>Advanced web, API security, bug bounty</td><td>PortSwigger Practitioner labs, first valid bug bounty report, eJPT or CPTS</td></tr>
+        <tr><td>Investigation</td><td>DFIR, OSINT, cyber crime</td><td>Advanced CyberDefenders labs, <a href="https://www.tracelabs.org/" target="_blank" rel="noopener">Trace Labs</a> OSINT CTFs, mobile forensics, forensics firm internship</td></tr>
+        <tr><td>Both (the Amit Dubey path)</td><td>Offense + investigation for fraud</td><td>Balance both monthly, write public scam-awareness posts, look for law-enforcement volunteer or research roles</td></tr>
+      </table></div>
+      <p><b>Habits:</b> one CTF a month, one write-up a month, 20 minutes of news a day (<a href="https://thehackernews.com/" target="_blank" rel="noopener">The Hacker News</a>, <a href="https://www.bleepingcomputer.com/" target="_blank" rel="noopener">BleepingComputer</a>).</p>
+    </section>
+
+    <!-- SOURCES -->
+    <section class="block" id="sources">
+      <h2>Sources</h2>
+      <ul class="clean">
+        <li><a href="https://help.hackthebox.com/en/articles/13677074-academy-subscriptions" target="_blank" rel="noopener">HTB Academy subscriptions</a> · <a href="https://help.hackthebox.com/en/articles/13465244-getting-the-student-subscription" target="_blank" rel="noopener">Student plan verification</a></li>
+        <li><a href="https://tryhackme.com/pricing" target="_blank" rel="noopener">TryHackMe pricing</a></li>
+        <li><a href="https://www.isc2.org/Insights/2026/04/one-million-certified-cyber-conclusion" target="_blank" rel="noopener">ISC2 One Million CC conclusion</a></li>
+        <li><a href="https://www.guvi.in/blog/best-youtube-channels-to-learn-ethical-hacking/" target="_blank" rel="noopener">GUVI: Hindi ethical hacking channels</a></li>
+        <li><a href="https://www.graduateshub.org/blog/how-to-get-coursera-certificates-for-free-2026-financial-aid-guide" target="_blank" rel="noopener">Coursera Financial Aid guide (2026)</a></li>
+        <li><a href="https://www.coursera.org/professional-certificates/google-cybersecurity" target="_blank" rel="noopener">Google Cybersecurity Certificate</a> · <a href="https://www.coursera.org/professional-certificates/ibm-cybersecurity-analyst" target="_blank" rel="noopener">IBM Cybersecurity Analyst</a></li>
+        <li><a href="https://portswigger.net/web-security" target="_blank" rel="noopener">PortSwigger Web Security Academy</a> · <a href="https://cybercrime.gov.in/" target="_blank" rel="noopener">National Cyber Crime Reporting Portal</a></li>
+      </ul>
+      <p class="tip">Prices and programs checked 17 Sep 2026. They can change, so confirm before paying.</p>
+    </section>
+  </main>
+</div>
+
+<dialog id="authDialog">
+  <form method="dialog" id="authForm">
+    <h3>Sign in to sync progress</h3>
+    <p class="tip">Enter your email and we'll send a one-time sign-in link. Open it on each device you want to sync. No password needed.</p>
+    <input type="email" id="authEmail" placeholder="you@example.com" required autocomplete="email">
+    <div class="row">
+      <button type="button" class="btn" id="authCancel">Cancel</button>
+      <button type="submit" class="btn primary" id="authSend">Send magic link</button>
+    </div>
+    <div class="msg" id="authMsg"></div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
