@@ -190,7 +190,11 @@
   }, { rootMargin: "-40% 0px -55% 0px" });
 
   // ---------- Supabase sync ----------
-  const configured = !!(CFG.SUPABASE_URL && CFG.SUPABASE_ANON_KEY && window.supabase);
+  const SB_KEY = String(CFG.SUPABASE_PUBLISHABLE_KEY || CFG.SUPABASE_ANON_KEY || "").trim();
+  // Accept a pasted URL with extra bits like "/rest/v1/" or a trailing slash.
+  let SB_URL = "";
+  try { SB_URL = CFG.SUPABASE_URL ? new URL(String(CFG.SUPABASE_URL).trim()).origin : ""; } catch { SB_URL = ""; }
+  const configured = !!(SB_URL && SB_KEY && window.supabase);
   let sb = null, user = null, pushTimer = null, pushing = false;
 
   function schedulePush() {
@@ -257,7 +261,7 @@
 
   const dlg = $("#authDialog");
   $("#authBtn").addEventListener("click", async () => {
-    if (!configured) { toast("Add your Supabase URL and anon key in config.js (see README)."); return; }
+    if (!configured) { toast("Add your Supabase URL and publishable key in config.js (see README)."); return; }
     if (user) { await sb.auth.signOut(); toast("Signed out. Progress stays saved on this device."); return; }
     $("#authMsg").textContent = "";
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
@@ -283,7 +287,7 @@
   updateAuthUI();
 
   if (configured) {
-    sb = window.supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_ANON_KEY);
+    sb = window.supabase.createClient(SB_URL, SB_KEY);
     sb.auth.onAuthStateChange((event, session) => {
       const next = session ? session.user : null;
       const changed = (next && next.id) !== (user && user.id);
